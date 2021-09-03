@@ -3,10 +3,7 @@ using Core.Interceptors;
 using DataAccess.CrossCuttingConcerns.Validation;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Aspects.Autofac.Validation
 {
@@ -16,9 +13,9 @@ namespace Core.Aspects.Autofac.Validation
 
         public ValidationAspect(Type validatorType)
         {
-            if (typeof(IValidator).IsAssignableFrom(validatorType))
+            if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new Exception("Parameter must be assignable from IValidator.");
+                throw new System.Exception("Parameter must be assignable from IValidator.");
             }
 
             this._validatorType = validatorType;

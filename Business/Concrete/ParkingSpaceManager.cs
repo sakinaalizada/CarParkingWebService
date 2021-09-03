@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.CrossCuttingConcerns.Validation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
@@ -21,6 +22,8 @@ namespace Business.Concrete
 
         }
         [ValidationAspect(typeof(ParkingSpaceValidator))]
+        [CacheRemoveAspect("IParkingSpaceService.Get")]
+
         public IResult Add(ParkingSpace parkingSpace)
         {
             _parkingSpaceDal.Add(parkingSpace);
@@ -28,6 +31,7 @@ namespace Business.Concrete
 
 
         }
+        [CacheRemoveAspect("IParkingSpaceService.Get")]
 
         public IResult Delete(ParkingSpace parkingSpace)
         {
@@ -41,22 +45,23 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ParkingSpace>>(_parkingSpaceDal.GetAll());
 
         }
-
+        [CachingAspect]
         public IDataResult<List<ParkingSpace>> GetAll(Expression<Func<ParkingSpace, bool>> filter = null)
         {
             return new SuccessDataResult<List<ParkingSpace>>(_parkingSpaceDal.GetAll(filter));
         }
-
+        [CachingAspect]
         public IDataResult<ParkingSpace> GetById(int id)
         {
             return new SuccessDataResult<ParkingSpace>(_parkingSpaceDal.Get(m => m.ParkingSpaceId == id));
         }
-
+        [CachingAspect]
         public IDataResult< decimal > GetChargeForHourById(int id)
         {
             return new SuccessDataResult<decimal>(_parkingSpaceDal.Get(m => m.ParkingSpaceId == id).ChargeForHour);
         }
         [ValidationAspect(typeof(ParkingSpaceValidator))]
+        [CacheRemoveAspect("IParkingSpaceService.Get")]
         public IResult Update(ParkingSpace parkingSpace)
         {
             _parkingSpaceDal.Update(parkingSpace);

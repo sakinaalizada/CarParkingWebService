@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.CrossCuttingConcerns.Validation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
@@ -21,6 +22,7 @@ namespace Business.Concrete
 
         }
         [ValidationAspect(typeof(EmployeeValidator))]
+        [CacheRemoveAspect("IEmployeeService.Get")]
         public IResult Add(Employee employee)
         {
             _employeeDal.Add(employee);
@@ -28,6 +30,7 @@ namespace Business.Concrete
 
 
         }
+        [CacheRemoveAspect("IEmployeeService.Get")]
 
         public IResult Delete(Employee employee)
         {
@@ -35,24 +38,25 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
-
+        [CachingAspect]
         public IDataResult<List<Employee>> GetAll()
         {
             return new SuccessDataResult<List<Employee>>( _employeeDal.GetAll());
 
         }
-
+        [CachingAspect]
         public IDataResult<List<Employee>> GetAll(Expression<Func<Employee, bool>> filter = null)
         {
             return new SuccessDataResult<List<Employee>>(_employeeDal.GetAll(filter));
         }
-
+        [CachingAspect]
         public IDataResult<Employee> GetById(int id)
         {
             return new SuccessDataResult<Employee>(_employeeDal.Get(m => m.EmployeeId == id));
         }
 
         [ValidationAspect(typeof(EmployeeValidator))]
+        [CacheRemoveAspect("IEmployeeService.Get")]
         public IResult Update(Employee employee)
         {
             _employeeDal.Update(employee);
