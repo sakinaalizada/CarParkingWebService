@@ -20,6 +20,7 @@ namespace DataAccess.Concrete.EntityFrameWork
             using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
+                entity.GetType().GetProperties()[0].SetValue(entity, GetNextId());
                 addedEntity.State = EntityState.Added;
                 context.SaveChanges();
 
@@ -72,6 +73,16 @@ namespace DataAccess.Concrete.EntityFrameWork
                 context.SaveChanges();
 
 
+            }
+        }
+        public int GetNextId()
+        {
+            using (TContext context = new TContext())
+            {
+                var result = context.Set<TEntity>()
+                    .ToList().Select(t => t.GetType()
+                    .GetProperties()[0].GetValue(t)).LastOrDefault() as int?;
+                return result + 1 ?? 1;
             }
         }
     }

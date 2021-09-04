@@ -18,40 +18,40 @@ namespace WebAPI.Controllers
             {
                 _employeeService = employeeService;
             }
-            [HttpPost("add")]
+            [HttpPost]
             public IActionResult Add(Employee employee)
             {
                 var result = this._employeeService.Add(employee);
                 if (result.Success)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
             }
-            [HttpPost("update")]
+            [HttpPut]
             public IActionResult Update(Employee employee)
             {
                 var result = this._employeeService.Update(employee);
                 if (result.Success)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
             }
-            [HttpPost("delete")]
+            [HttpDelete]
             public IActionResult Delete(Employee employee)
             {
                 var result = this._employeeService.Delete(employee);
                 if (result.Success)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
-                return BadRequest(result.Message);
+                return BadRequest(result);
 
             }
-            [HttpGet("getall")]
+            [HttpGet]
             public IActionResult GetAll()
             {
                 var result = this._employeeService.GetAll();

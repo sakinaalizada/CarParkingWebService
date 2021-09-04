@@ -18,48 +18,48 @@ namespace WebAPI.Controllers
         {
             _parkingSpaceService = parkingSpaceService;
         }
-        [HttpPost("add")]
+        [HttpPost]
         public IActionResult Add(ParkingSpace parkingSpace)
         {
             var result = this._parkingSpaceService.Add(parkingSpace);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpPost("update")]
+        [HttpPut]
         public IActionResult Update(ParkingSpace parkingSpace)
         {
             var result = this._parkingSpaceService.Update(parkingSpace);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpPost("delete")]
+        [HttpDelete]
         public IActionResult Delete(ParkingSpace parkingSpace)
         {
             var result = this._parkingSpaceService.Delete(parkingSpace);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpGet("getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var result = this._parkingSpaceService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
         [HttpGet("getchargeforhourbyid")]
@@ -68,9 +68,9 @@ namespace WebAPI.Controllers
             var result = this._parkingSpaceService.GetChargeForHourById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
 
@@ -80,9 +80,9 @@ namespace WebAPI.Controllers
             var result = this._parkingSpaceService.GetById(id);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
     }

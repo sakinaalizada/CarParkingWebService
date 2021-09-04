@@ -7,8 +7,6 @@ namespace Business.CrossCuttingConcerns.Validation
     {
         public CarValidator()
         {
-            RuleFor(m => m.CarId).NotEmpty();
-            RuleFor(m => m.CarId).GreaterThan(0);
             RuleFor(m => m.CarPlate).NotEmpty();
             RuleFor(m => m.ArrivalTime).NotEmpty();
             RuleFor(m => m.DepartureTime).NotEmpty();

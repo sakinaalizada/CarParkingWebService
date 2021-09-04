@@ -37,13 +37,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
         [CachingAspect]
-        public IDataResult<List<Car>> GetAll()
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
-
-        }
-
-        [CachingAspect]
         public IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter));

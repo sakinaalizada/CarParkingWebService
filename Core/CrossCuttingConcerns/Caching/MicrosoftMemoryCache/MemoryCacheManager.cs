@@ -39,7 +39,7 @@ namespace Core.CrossCuttingConcerns.Caching.MicrosoftMemoryCache
 
         public void RemoveByPattern(string pattern)
         {
-            var cacheEntriesCollectionDefinition = typeof(IMemoryCache).GetProperty
+            var cacheEntriesCollectionDefinition = typeof(MemoryCache).GetProperty
                 ("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
             var cacheEntriesCollection = cacheEntriesCollectionDefinition.GetValue(this._memoryCache) as dynamic;
             List<ICacheEntry> cacheCollectionValues = new List<ICacheEntry>();

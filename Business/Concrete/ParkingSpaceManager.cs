@@ -40,11 +40,6 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult< List<ParkingSpace>> GetAll()
-        {
-            return new SuccessDataResult<List<ParkingSpace>>(_parkingSpaceDal.GetAll());
-
-        }
         [CachingAspect]
         public IDataResult<List<ParkingSpace>> GetAll(Expression<Func<ParkingSpace, bool>> filter = null)
         {

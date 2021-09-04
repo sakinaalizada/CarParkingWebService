@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         {
             _carService = carService;
         }
-        [HttpPost("add")]
+        [HttpPost]
         public IActionResult Add(Car car)
         {
             var result = this._carService.Add(car);
@@ -29,48 +29,48 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
 
         }
-        [HttpPost("update")]
+        [HttpPut]
         public IActionResult Update(Car car)
         {
             var result = this._carService.Update(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpPost("delete")]
+        [HttpDelete]
         public IActionResult Delete(Car car)
         {
             var result = this._carService.Delete(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpGet("getall")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var result = this._carService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
-        [HttpGet("searchbycarplate")]
+        [HttpGet("SearchByCarPlate")]
         public IActionResult SearchByCarPlate(string text)
         {
             var result = this._carService.SearchByCarPlate(text);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
     }

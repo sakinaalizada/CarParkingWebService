@@ -39,12 +39,6 @@ namespace Business.Concrete
 
         }
         [CachingAspect]
-        public IDataResult<List<Employee>> GetAll()
-        {
-            return new SuccessDataResult<List<Employee>>( _employeeDal.GetAll());
-
-        }
-        [CachingAspect]
         public IDataResult<List<Employee>> GetAll(Expression<Func<Employee, bool>> filter = null)
         {
             return new SuccessDataResult<List<Employee>>(_employeeDal.GetAll(filter));

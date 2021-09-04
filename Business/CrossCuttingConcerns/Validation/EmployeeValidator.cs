@@ -7,8 +7,7 @@ namespace Business.CrossCuttingConcerns.Validation
     {
         public EmployeeValidator()
         {
-            RuleFor(m => m.EmployeeId).NotEmpty();
-            RuleFor(m => m.EmployeeId).GreaterThan(0);
+           
             RuleFor(m => m.ParkingSpaceId).NotEmpty();
             RuleFor(m => m.ParkingSpaceId).GreaterThan(0);
             RuleFor(m => m.EmployeeFirstName.Trim()).NotEmpty();
