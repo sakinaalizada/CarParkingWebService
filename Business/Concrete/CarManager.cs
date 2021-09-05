@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CrossCuttingConcerns.Validation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
@@ -12,6 +13,7 @@ using System.Linq.Expressions;
 
 namespace Business.Concrete
 {
+   // [AuthorizationAspect()]
     public class CarManager : ICarService
     {
         private ICarDal _carDal;

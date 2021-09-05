@@ -8,12 +8,12 @@ namespace DataAccess.Concrete.EntityFrameWork
 {
     public class CarParkingContext : DbContext
     {
-        DbSet<Car> Cars { get; set; }
-        DbSet<Employee> Employees { get; set; }
-        DbSet<ParkingSpace> ParkingSpaces { get; set; }
-        DbSet<User> Users { get; set; }
-        DbSet<OperationClaim> OperationClaims { get; set; }
-        DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<ParkingSpace> ParkingSpaces { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"server = (localdb)\MSSQLLocalDB; Database = CarDB; Trusted_connection = true");
